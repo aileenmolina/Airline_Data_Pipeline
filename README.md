@@ -15,7 +15,7 @@ This project demonstrates an **end-to-end data engineering pipeline** for airlin
 - Gold-layer dimensions and fact tables  
 - Analytics-ready dbt models  
 
-The goal is to showcase **pipeline design, transformations, incremental loads, and data modeling** in a portfolio-ready project.
+The goal is to showcase **pipeline design, transformations, incremental loads, and data modeling** 
 
 ---
 
@@ -50,8 +50,6 @@ The goal is to showcase **pipeline design, transformations, incremental loads, a
 - Incremental loads and CDC for streaming-like pipelines  
 - Data quality and testing using dbt (`unique`, `not_null`)  
 - Python & SQL scripting for transformations  
-- Clear documentation and reproducible portfolio-ready repo structure  
-
 ---
 
 ## **Design Considerations & Decisions**
