@@ -15,7 +15,7 @@ This project demonstrates an **end-to-end data engineering pipeline** for airlin
 - Gold-layer dimensions and fact tables  
 - Analytics-ready dbt models  
 
-The goal is to showcase **pipeline design, transformations, incremental loads, and data modeling** 
+The goal is to showcase **pipeline design, transformations, incremental loads, and data modeling.** 
 
 ---
 
