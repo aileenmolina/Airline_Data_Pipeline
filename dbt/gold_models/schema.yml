@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: customer_bookings_summary
+    description: "Aggregated booking statistics per customer from FactBookings"
+    columns:
+      - name: customer_key
+        description: "Surrogate key for the customer from DimPassengers"
+      - name: total_bookings
+        description: "Total bookings per customer"
+      - name: first_booking_date
+        description: "Date of first booking"
+      - name: last_booking_date
+        description: "Date of last booking"
+    tests:
+      - unique:
+          column_name: customer_key
+      - not_null:
+          column_name: customer_key
+
+  - name: flight_operations_performance
+    description: "Aggregated flight performance metrics"
+    columns:
+      - name: flight_key
+        description: "Surrogate key from DimFlights"
+      - name: total_bookings
+        description: "Total bookings for this flight"
+      - name: total_revenue
+        description: "Total revenue from this flight"
+    tests:
+      - unique:
+          column_name: flight_key
+      - not_null:
+          column_name: flight_key
+
+  - name: airport_performance
+    description: "Aggregated airport performance metrics"
+    columns:
+      - name: airport_key
+        description: "Surrogate key from DimAirports"
+      - name: total_departures
+        description: "Total number of departures from this airport"
+      - name: total_revenue
+        description: "Total revenue generated at this airport"
+    tests:
+      - unique:
+          column_name: airport_key
+      - not_null:
+          column_name: airport_key
