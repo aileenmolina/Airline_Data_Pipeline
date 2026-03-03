@@ -15,8 +15,6 @@ This project demonstrates an **end-to-end data engineering pipeline** for airlin
 - Gold-layer dimensions and fact tables  
 - Analytics-ready dbt models  
 
-The goal is to showcase **pipeline design, transformations, incremental loads, and data modeling.** 
-
 ---
 
 ## **Pipeline Diagram**
@@ -39,7 +37,7 @@ The goal is to showcase **pipeline design, transformations, incremental loads, a
 - **PySpark**: Transformations, CDC handling, incremental processing  
 - **dbt**: Analytics layer, incremental models, testing, documentation  
 - **Delta Lake**: SCD handling, ACID-compliant tables  
-- **GitHub**: Version control and portfolio organization  
+- **GitHub**: Version control 
 
 ---
 
