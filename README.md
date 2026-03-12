@@ -119,7 +119,7 @@ airline-data-pipeline-portfolio/
          ├─ 📝 02_flight_operations_performance.sql
          ├─ 📝 03_airport_performance.sql
          └─ 📝 schema.yml
-
+```
 ---
 ## 👩‍💻 Author
  
