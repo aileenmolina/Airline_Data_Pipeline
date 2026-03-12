@@ -28,8 +28,9 @@
 ## 📌 What This Does
  
 Simulates real-world airline operations data across flight schedules, customer bookings, and airport activity. Built to reflect production patterns rather than tutorial structure — incremental ingestion, CDC handling, parameterized dynamic notebooks, and a tested dbt layer on top.
- 
+
 Dataset covers 500+ records across flights, bookings, and airport dimensions. Auto Loader ingestion was validated by introducing new files mid-pipeline to confirm incremental behavior and rule out reprocessing.
+ 
 ---
 
 ## 🛠️ Tech Stack
