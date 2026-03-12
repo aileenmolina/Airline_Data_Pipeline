@@ -14,7 +14,7 @@
 
 ## **Pipeline Architecture**
 
-![Pipeline Diagram](images/airline_data_pipeline_diagram.png)
+![Pipeline Diagram](images/arch_diagram2.png)
 
 ### **Pipeline Screenshots**
 
