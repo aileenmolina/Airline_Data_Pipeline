@@ -8,16 +8,11 @@
 
 ## **Project Overview**
 
-This project demonstrates an **end-to-end data engineering pipeline** for airline data using **Databricks and dbt**. It simulates real-world airline operations, including:
-
-- Customer bookings  
-- Flights and airports data  
-- Gold-layer dimensions and fact tables  
-- Analytics-ready dbt models  
+> End-to-end data engineering pipeline built in Databricks using Medallion Architecture, declarative DLT pipelines, and dbt for analytics-ready modeling.
 
 ---
 
-## **Pipeline Diagram**
+## **Pipeline Architecture**
 
 ![Pipeline Diagram](images/airline_data_pipeline_diagram.png)
 
@@ -30,45 +25,76 @@ This project demonstrates an **end-to-end data engineering pipeline** for airlin
 ![Silver Pipeline](images/silver_pipeline.png)
 
 ---
-
-## **Tech Stack**
-
-- **Databricks**: Delta Lake, notebooks, DLT pipelines  
-- **PySpark**: Transformations, CDC handling, incremental processing  
-- **dbt**: Analytics layer, incremental models, testing, documentation  
-- **Delta Lake**: SCD handling, ACID-compliant tables  
-- **GitHub**: Version control 
-
+## 📌 What This Does
+ 
+Simulates real-world airline operations data across flight schedules, customer bookings, and airport activity. Built to reflect production patterns rather than tutorial structure — incremental ingestion, CDC handling, parameterized dynamic notebooks, and a tested dbt layer on top.
+ 
+Dataset covers 500+ records across flights, bookings, and airport dimensions. Auto Loader ingestion was validated by introducing new files mid-pipeline to confirm incremental behavior and rule out reprocessing.
 ---
 
-## **Project Highlights / Skills Demonstrated**
+## 🛠️ Tech Stack
+ 
+| Layer | Tools |
+|---|---|
+| Ingestion | Databricks Auto Loader |
+| Transformation | PySpark, Databricks DLT |
+| Storage | Delta Lake |
+| Analytics | dbt Core |
+| Orchestration | Databricks Notebooks (dynamic) |
+| Version Control | GitHub |
 
-- End-to-end pipeline design: Raw → Bronze → Silver → Gold → Analytics  
-- Data modeling: Dimensions (`DimPassengers`, `DimFlights`, `DimAirports`) and Fact tables (`FactBookings`)  
-- Incremental loads and CDC for streaming-like pipelines  
-- Data quality and testing using dbt (`unique`, `not_null`)  
-- Python & SQL scripting for transformations  
 ---
-
-## **Design Considerations & Decisions**
-
-- **SCD for Dimensions:**  
-  Typically, dimension tables like `DimPassengers` or `DimFlights` use **Slowly Changing Dimension Type 2 (SCD2)** to preserve historical changes.  
-  For this project, **incremental loads without full SCD2** were implemented to simplify the pipeline and focus on showcasing **end-to-end flow and dbt integration**.  
-
-- **Fact Table Aggregations:**  
-  `FactBookings` aggregates metrics per customer, flight, and airport.  
-  In production, additional metrics like cancellations or multi-leg flights could be included.
-
-- **Data Quality Testing:**  
-  dbt tests enforce **unique surrogate keys** and **not null constraints**.  
-  Additional production-level validations could include **range checks** and **reference data comparisons**.
-
-- **Pipeline Choices:**  
-  - Bronze → Silver → Gold structure follows **Delta Lake best practices**.  
-  - Autoloader + DLT + CDC handles streaming ingestion; for portfolio purposes, **batch simulations** were used.  
-
-
+## 🏗️ Design Decisions
+ 
+### Dynamic Notebooks Over Hardcoded Values
+Pipeline logic is fully parameterized so nothing is environment-specific or brittle. Values are passed at runtime rather than embedded in notebook cells, making the pipeline portable and easier to maintain.
+ 
+### Declarative DLT Pipelines
+Used Databricks DLT for the Silver layer to define pipeline logic declaratively rather than imperatively. This keeps transformation logic readable and lets Databricks handle dependency resolution and error recovery automatically.
+ 
+### Incremental Loads Without Full SCD2
+Dimension tables like `DimPassengers` and `DimFlights` would use SCD Type 2 in production to preserve historical changes. Simplified here to incremental loads to keep focus on end-to-end architecture and dbt integration rather than historical tracking overhead.
+ 
+### dbt Testing
+Surrogate key uniqueness and null constraints enforced across all Gold models. Tested CDC behavior and incremental model logic by introducing new records mid-pipeline to validate that only net-new data was processed downstream.
+ 
+---
+## ▶️ How to Run This
+ 
+### Prerequisites
+- Databricks workspace (any tier)
+- dbt Core installed locally
+- Git
+ 
+### Steps
+ 
+```bash
+# 1. Clone the repo
+git clone https://github.com/aileenmolina/airline-data-pipeline-portfolio.git
+ 
+# 2. Import notebooks into your Databricks workspace
+ 
+# 3. Run notebooks in order:
+#    01_bronze_ingestion_autoloader
+#    02_silver_pipeline
+#    03_gold_notebooks_dynamic
+ 
+# 4. From the dbt/ directory:
+dbt run
+dbt test
+```
+ 
+---
+# 🔮 Production Considerations
+ 
+This is a portfolio project with intentional simplifications. In a production environment this pipeline would extend to include:
+ 
+- **Orchestration** — Airflow or Databricks Workflows for scheduling and dependency management
+- **Secrets management** — environment variables or a secrets manager rather than hardcoded configs
+- **Monitoring and alerting** — pipeline failure notifications and data quality anomaly detection
+- **Full SCD2** — historical tracking on dimension tables for slowly changing attributes
+- **Data volume scaling** — partitioning strategy would need revisiting at production scale
+ 
 ---
 
 ## **Folder Structure**
@@ -92,3 +118,9 @@ airline-data-pipeline-portfolio/
          ├─ 📝 02_flight_operations_performance.sql
          ├─ 📝 03_airport_performance.sql
          └─ 📝 schema.yml
+
+---
+## 👩‍💻 Author
+ 
+**Aileen Molina** — Data Engineer  
+[LinkedIn](https://linkedin.com/in/aileenmolina) · [GitHub](https://github.com/aileenmolina)
